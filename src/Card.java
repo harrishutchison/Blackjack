@@ -1,5 +1,11 @@
 public class Card {
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+
     public static final int CLUBS = 0;
     public static final int DIAMONDS = 1;
     public static final int HEARTS = 2;
@@ -30,6 +36,11 @@ public class Card {
     }
 
     public int getRank() {
+        if (cardRank == 14) {
+            return -1;
+        } else if (cardRank > 10 && cardRank < 14) {
+            return 10;
+        }
         return cardRank;
     }
 
@@ -45,7 +56,26 @@ public class Card {
      * @return the card as a string, eg. "Kh" = King of hearts
      */
     public String getCard() {
-        return RANK[cardRank] + SUIT[cardSuit];
+        String c = RANK[cardRank] + SUIT[cardSuit] + ANSI_RESET;
+
+        switch(c.charAt(1)) {
+            case 'c':
+                c = ANSI_GREEN_BACKGROUND + c;
+                break;
+            case 'd':
+                c = ANSI_BLUE_BACKGROUND + c;
+                break;
+            case 'h':
+                c = ANSI_RED_BACKGROUND + c;
+                break;
+            case 's':
+                c = ANSI_BLACK_BACKGROUND + c;
+                break;
+            default:
+
+        }
+
+        return c;
     }
 
 }

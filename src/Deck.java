@@ -21,10 +21,10 @@ public class Deck {
      * Shuffling by finding two random cards in the deck and swapping them
      * @param n is the number of times this is repeated
      */
-    public void shuffle(int n) {
+    public void shuffle() {
         int i, j;
 
-        for (int k = 0; k < n; k++) {
+        for (int k = 0; k < 100; k++) {
             i = (int) (NUM_OF_CARDS * Math.random());
             j = (int) (NUM_OF_CARDS * Math.random());
 
