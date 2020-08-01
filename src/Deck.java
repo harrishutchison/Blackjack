@@ -2,7 +2,7 @@ public class Deck {
 
     public static final int NUM_OF_CARDS = 52;
 
-    private Card[] deckOfCards;
+    private final Card[] deckOfCards;
     private int currentCard;
 
     public Deck() {
@@ -29,7 +29,7 @@ public class Deck {
             i = (int) (NUM_OF_CARDS * Math.random());
             j = (int) (NUM_OF_CARDS * Math.random());
 
-            Card temp = deckOfCards[i];
+            final Card temp = deckOfCards[i];
             deckOfCards[i] = deckOfCards[j];
             deckOfCards[j] = temp;
         }
