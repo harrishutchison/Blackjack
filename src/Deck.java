@@ -1,5 +1,5 @@
 public class Deck {
-    
+
     public static final int NUM_OF_CARDS = 52;
 
     private Card[] deckOfCards;
@@ -19,6 +19,7 @@ public class Deck {
 
     /**
      * Shuffling by finding two random cards in the deck and swapping them
+     * 
      * @param n is the number of times this is repeated
      */
     public void shuffle() {
