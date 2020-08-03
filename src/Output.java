@@ -49,6 +49,9 @@ public class Output {
             final String input = scanner.nextLine();
             if (input.equals("1") || input.equals("1.")) {
                 return true;
+            } else {
+                System.out.println("Thanks for playing!");
+                System.exit(0);
             }
         }
         return false;

@@ -18,19 +18,19 @@ public class Game {
             if (isPlayerTurn) {
                 if (x.getRank() == -1) {
                     if (playerCount.get() != 11) {
-                        playerCount.set(playerCount.get() + Output.ace(x, playerCount, scanner));
+                        playerCount.addAndGet(Output.ace(x, playerCount, scanner));
                     } else {
-                        playerCount.set(playerCount.get() + 1);
+                        playerCount.addAndGet(1);
                     }
                 } else {
-                    playerCount.set(playerCount.get() + x.getRank());
+                    playerCount.addAndGet(x.getRank());
                 }
                 playerCards.append(x.getCard());
             } else {
                 if (x.getRank() == -1) {
-                    dealerCount.set(dealerCount.get() + 11); // As it is dealers first card, no reason for it to be 1
+                    dealerCount.addAndGet(11); // As it is dealers first card, no reason for it to be 1
                 } else {
-                    dealerCount.set(dealerCount.get() + x.getRank());
+                    dealerCount.addAndGet(x.getRank());
                 }
                 dealerCards.append(x.getCard());
             }
@@ -52,11 +52,11 @@ public class Game {
             if (choice.toLowerCase().equals("h")) {
                 final Card x = deck.deal();
                 if (x.getRank() == -1 && playerCount.get() <= 10) {
-                    playerCount.set(playerCount.get() + Output.ace(x, playerCount, scanner));
+                    playerCount.addAndGet(Output.ace(x, playerCount, scanner));
                 } else if (x.getRank() == -1 && (playerCount.get() > 10)) {
-                    playerCount.set(playerCount.get() + 1);
+                    playerCount.addAndGet(1);
                 } else {
-                    playerCount.set(playerCount.get() + x.getRank());
+                    playerCount.addAndGet(x.getRank());
                 }
                 playerCards.append(x.getCard());
 
@@ -78,8 +78,7 @@ public class Game {
     }
 
     public static void dealerTurn(final Deck deck, final StringBuilder dealerCards, final AtomicInteger dealerCount,
-            final Scanner scanner)
-            throws IOException, InterruptedException {
+            final Scanner scanner) throws IOException, InterruptedException {
         System.out.println("Dealer is hitting");
 
         TimeUnit.SECONDS.sleep(1);
@@ -89,13 +88,13 @@ public class Game {
             final Card x = deck.deal();
             if (x.getRank() == -1) {
                 if ((dealerCount.get() + 11) >= 17 && (dealerCount.get() + 11) <= 21) {
-                    dealerCount.set(dealerCount.get() + 11);
+                    dealerCount.addAndGet(11);
                 } else {
-                    dealerCount.set(dealerCount.get() + 1); // If dealer already has an Ace, then taking 11 will mean
-                                                            // the dealer is bust
+                    dealerCount.addAndGet(1); // If dealer already has an Ace, then taking 11 will mean
+                                              // the dealer is bust
                 }
             } else {
-                dealerCount.set(dealerCount.get() + x.getRank());
+                dealerCount.addAndGet(x.getRank());
             }
             dealerCards.append(x.getCard());
             Output.printCounts(dealerCards, dealerCount, false);
